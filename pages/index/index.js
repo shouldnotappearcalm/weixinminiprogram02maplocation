@@ -1,4 +1,4 @@
-//index.js
+﻿//index.js
 //获取应用实例
 var app = getApp()
 Page({
@@ -51,5 +51,29 @@ Page({
       longitude: Number(value.longitude),
       latitude: Number(value.latitude)
     })
+  },
+  //选择位置位置
+  chooseLocation:function(e){
+    console.log(e)
+    var that=this
+    wx.chooseLocation({
+          success: function(res){
+            // success
+            console.log(res)
+            that.setData({
+              hasLocation:true,
+              location:{
+                longitude:res.longitude,
+                latitude:res.latitude
+              }
+            })
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
+        })
   }
 })
